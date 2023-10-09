@@ -13,6 +13,7 @@ export function App() {
     console.log(pronouns)
     console.log(name)
     getPronouns(pronouns)
+    console.log(started)
     setStarted(true)
   }
 
