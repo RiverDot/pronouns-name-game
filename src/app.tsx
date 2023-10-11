@@ -3,6 +3,7 @@ import { BackGround } from './components/backGround'
 import { TitleCard } from './components/titleCard'
 import './app.css'
 import { ReloadPrompt } from './ReloadPrompt'
+import {logAna} from './api/firebase'
 
 export function App() {
   const [started, setStarted] = useState(false)
@@ -21,6 +22,7 @@ export function App() {
     const response = await fetch(`https://en.pronouns.page/api/pronouns/${pronouns}`);
     const pronounData = await response.json();
     console.log(pronounData);
+    logAna('Game Started')
     setStarted(true)
   }
 
