@@ -19,6 +19,10 @@ export function DiscCard({ pronouns, startFunc }: DiscCardProps) {
         setPronounEx(pronounData.examples)
     }
 
+    function start() {
+        startFunc()
+    }
+
     useEffect(() => {
         loadFunc()
     }, []);
@@ -35,6 +39,12 @@ export function DiscCard({ pronouns, startFunc }: DiscCardProps) {
                         ))
                     }
                 </ul>
+                <button
+                        onClick={start}
+                        class="bg-lime-500 hover:bg-lime-600 text-gray-800 font-semibold py-2 px-4 border border-lime-500 rounded shadow mt-4"
+                    >
+                        Start Game
+                    </button>
             </div>
         </>
     )
