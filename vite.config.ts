@@ -3,15 +3,6 @@ import packageJson from './package.json';
 import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa'
 import preact from '@preact/preset-vite'
 
-function renderChunks(deps: Record<string, string>) {
-  let chunks = {};
-  Object.keys(deps).forEach((key) => {
-    if (['react', 'react-router-dom', 'react-dom'].includes(key)) return;
-    chunks[key] = [key];
-  });
-  return chunks;
-}
-
 const pwaOptions: Partial<VitePWAOptions> = {
   registerType: 'autoUpdate',
   mode: 'development',
@@ -44,18 +35,9 @@ const pwaOptions: Partial<VitePWAOptions> = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  optimizeDeps: { include: ['firebase/app', 'firebase/analytics'] },
   plugins: [
     preact(),
     VitePWA(pwaOptions)
-  ],
-  build: {
-    sourcemap: false,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          ...renderChunks(packageJson.dependencies),
-        },
-      },
-    },
-  },
+  ]
 })
